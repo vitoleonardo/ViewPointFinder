@@ -27,6 +27,9 @@ Given a mesh and an integer number N, find the first N view spots ordered by the
 
 ## Run
 
+To configure the amount of viewpoints please edit constant 'AMOUNT_SPOTS_TO_FIND' in handler.ts. By standard it will find all spots.
+Elapsed time on my machine (Macbook Pro 2019) to find 10000: 857ms and 20000: 3300ms.
+
 ```bash
 serverless invoke local --function findViewSpot -p <mesh file>
 ```
