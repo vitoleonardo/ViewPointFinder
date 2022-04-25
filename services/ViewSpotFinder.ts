@@ -3,11 +3,11 @@ import { Mesh } from "../models/Mesh";
 
 export class ViewSpotFinder {
 	/**
-	 * > We sort the elements by height, then we check if the current element is a neighbour of any of the
-	 * peaks we've already found. If it is, we skip it. If it isn't, we add it to the list of peaks
-	 * @param {Mesh} mesh - Mesh - the mesh you want to find the peaks of
-	 * @param {number} amountOfViewPoints - The amount of peaks you want to find.
-	 * @returns An array of elements that are peaks.
+	 * It sorts the elements descending according to their value and then iterates over them, adding them
+	 * to the result array if they are not a neighbour of a higher peak,
+	 * @param {Element[]} elements - Array of elements already merged with their respective values.
+	 * @param {number} amountOfViewPoints - The amount of peaks to find.
+	 * @returns an array of viewpoints.
 	 */
 	public findSpots(elements: Element[], amountOfViewPoints: number = Infinity): Element[] {
 		let peaks: Element[] = [];
