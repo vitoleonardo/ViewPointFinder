@@ -9,9 +9,8 @@ export class ViewSpotFinder {
 	 * @param {number} amountOfViewPoints - The amount of peaks you want to find.
 	 * @returns An array of elements that are peaks.
 	 */
-	public findSpots(mesh: Mesh, amountOfViewPoints: number = Infinity): Element[] {
+	public findSpots(elements: Element[], amountOfViewPoints: number = Infinity): Element[] {
 		let peaks: Element[] = [];
-		const elements = this.mergeValuesWithElements(mesh);
 
 		// Start with sorting elements descending according to value in O(n log n)
 		const sortedElements = elements.sort((a, b) => b.value! - a.value!);
@@ -37,29 +36,6 @@ export class ViewSpotFinder {
 		}
 
 		return peaks;
-	}
-
-	/**
-	 * It takes a mesh and returns an array of elements with values
-	 * @param {Mesh} mesh - Mesh - the mesh object that contains the elements and values
-	 * @returns An array of elements with the value property added.
-	 */
-	private mergeValuesWithElements(mesh: Mesh): Element[] {
-		let elements: Element[] = [];
-
-		mesh.elements.map((a) => {
-			const value = mesh.values.find((b) => b.element_id === a.id);
-			if (value) {
-				const element: Element = {
-					id: a.id,
-					nodes: a.nodes,
-					value: value.value,
-				};
-				elements.push(element);
-			}
-		});
-
-		return elements;
 	}
 
 	/**
